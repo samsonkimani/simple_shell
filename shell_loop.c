@@ -1,10 +1,10 @@
-#include "main.c"
+#include "main.h"
 
 /**
- * without_comment - deletes comment from the input
+ * without_comment - deletes comments from the input
  *
- * @in: the input
- * Return: inputs without comments
+ * @in: input string
+ * Return: input without comments
  */
 char *without_comment(char *in)
 {
@@ -20,10 +20,12 @@ char *without_comment(char *in)
 				free(in);
 				return (NULL);
 			}
+
 			if (in[i - 1] == ' ' || in[i - 1] == '\t' || in[i - 1] == ';')
 				up_to = i;
 		}
 	}
+
 	if (up_to != 0)
 	{
 		in = _realloc(in, i, up_to + 1);
@@ -34,12 +36,11 @@ char *without_comment(char *in)
 }
 
 /**
- * shell_loop - main shell loop
- * @datash: data passed on the loop
+ * shell_loop - Loop of shell
+ * @datash: data relevant (av, input, args)
  *
- * Return: nothing
+ * Return: no return.
  */
-
 void shell_loop(data_shell *datash)
 {
 	int loop, i_eof;
@@ -52,7 +53,7 @@ void shell_loop(data_shell *datash)
 		input = read_line(&i_eof);
 		if (i_eof != -1)
 		{
-			input == without_comment(input);
+			input = without_comment(input);
 			if (input == NULL)
 				continue;
 
