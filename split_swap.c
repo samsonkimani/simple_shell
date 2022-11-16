@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * *swap_char - swaps | and & for non-printed char
+ * swap_char - swaps | and & for non-printed chars
+ *
  * @input: input string
- * @bool: the type of swap
- * Return: pointer to swapped string
+ * @bool: type of swap
+ * Return: swapped string
  */
-
 char *swap_char(char *input, int bool)
 {
 	int i;
@@ -42,15 +42,16 @@ char *swap_char(char *input, int bool)
 	}
 	return (input);
 }
-/**
- * add_nodes - add separators and commands lines in the list
- * @head_s: head of the separator list
- * @head_l: head of the command line list
- * @input: input string
- * Return: return nothing
- */
 
-void add_node(sep_list **head_s, line_list **head_l, char *input)
+/**
+ * add_nodes - add separators and command lines in the lists
+ *
+ * @head_s: head of separator list
+ * @head_l: head of command lines list
+ * @input: input string
+ * Return: no return
+ */
+void add_nodes(sep_list **head_s, line_list **head_l, char *input)
 {
 	int i;
 	char *line;
@@ -61,6 +62,7 @@ void add_node(sep_list **head_s, line_list **head_l, char *input)
 	{
 		if (input[i] == ';')
 			add_sep_node_end(head_s, input[i]);
+
 		if (input[i] == '|' || input[i] == '&')
 		{
 			add_sep_node_end(head_s, input[i]);
@@ -69,7 +71,6 @@ void add_node(sep_list **head_s, line_list **head_l, char *input)
 	}
 
 	line = _strtok(input, ";|&");
-
 	do {
 		line = swap_char(line, 1);
 		add_line_node_end(head_l, line);
@@ -80,12 +81,12 @@ void add_node(sep_list **head_s, line_list **head_l, char *input)
 
 /**
  * go_next - go to the next command line stored
+ *
  * @list_s: separator list
  * @list_l: command line list
  * @datash: data structure
- * Return: nothing
+ * Return: no return
  */
-
 void go_next(sep_list **list_s, line_list **list_l, data_shell *datash)
 {
 	int loop_sep;
@@ -115,6 +116,7 @@ void go_next(sep_list **list_s, line_list **list_l, data_shell *datash)
 		if (ls_s != NULL && !loop_sep)
 			ls_s = ls_s->next;
 	}
+
 	*list_s = ls_s;
 	*list_l = ls_l;
 }
@@ -127,7 +129,6 @@ void go_next(sep_list **list_s, line_list **list_l, data_shell *datash)
  * @input: input string
  * Return: 0 to exit, 1 to continue
  */
-
 int split_commands(data_shell *datash, char *input)
 {
 
@@ -173,7 +174,6 @@ int split_commands(data_shell *datash, char *input)
  * @input: input string.
  * Return: string splitted.
  */
-
 char **split_line(char *input)
 {
 	size_t bsize;
