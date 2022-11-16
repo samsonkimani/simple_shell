@@ -1,6 +1,5 @@
 #include "main.h"
 
-#include "holberton.h"
 
 /**
  * check_env - checks if the typed variable is an env variable
@@ -137,7 +136,7 @@ char *replaced_input(r_var **head, char *input, char *new_input, int nlen)
 	return (new_input);
 }
 
-/**
+/**collect2: error: ld returned 1 exit status
  * rep_var - calls functions to replace string into vars
  *
  * @input: input string
@@ -146,7 +145,7 @@ char *replaced_input(r_var **head, char *input, char *new_input, int nlen)
  */
 char *rep_var(char *input, data_shell *datash)
 {
-	r_var *head, *indx;
+	r_var  *head, *indx;
 	char *status, *new_input;
 	int olen, nlen;
 
